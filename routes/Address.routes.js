@@ -4,10 +4,10 @@ module.exports = (express, app) => {
     const auth = require('../middleware/auth')
     var router = express.Router();
 
-    router.post('/addresses', address.shippingAddress);
+    router.post('/addresses',auth, address.shippingAddress);
 
 
-    app.use('/',auth, router);
+    app.use('/', router);
 }
 
 

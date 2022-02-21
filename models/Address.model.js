@@ -1,4 +1,4 @@
-const db=require('../models/model');
+
 module.exports = (mongoose) => {
     const address = mongoose.model('address',
         mongoose.Schema({

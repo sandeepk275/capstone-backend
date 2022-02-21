@@ -8,7 +8,7 @@ exports.shippingAddress = async  (req, res) => {
 
     // req.user is taken from auth module when user is logged in
     // console.log("user===>>>>", req.user._id);
-    const user = await  User.findOne({_id:req.user._id}).select('-isAuthenticated -__v');
+    const user = await User.findOne({ _id: req.user._id }).select('-isAdmin  -__v');
     if (!user) return res.status(400).send('Invalid user.');
     const address = new Address({
         name: req.body.name,

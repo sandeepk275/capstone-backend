@@ -10,6 +10,7 @@ module.exports = (mongoose) => {
             role: { type: String, default: 'user' },
             contactNumber: { type: Number, minlength: 10, maxlength: 10 },
             isAuthenticated: {type:Boolean, default:false},
+            isAdmin: { type: Boolean, default: false },
             token: String,
         }, { timestamps: true })
     );

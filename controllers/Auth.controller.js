@@ -33,7 +33,7 @@ exports.signup = (req, res) => {
                 contactNumber: req.body.contactNumber,
                 password: hash,
                 role: req.body.role,
-                isAuthenticated: req.body.isAuthenticated,
+                
             });
             user.save(user).then((data) => {
                 res.status(200).send(data);
@@ -63,17 +63,20 @@ exports.login = (req, res) => {
 
             if (bcrypt.compareSync(req.body.password, user.password)) {   // user has all object that particular email
                 // udating the user loggedIn true
+               
+               
                 const update = { isAuthenticated: true };
                 User.findOneAndUpdate(filter, update, { new: true })
                     .then((user) => {
                         const token = jwt.sign({ _id: user._id }, "myprivatekey")
                         user.token = token;
+                        user.isAdmin = true;
                         res.json({
-                            // email:user.email,
-                            // password: user.password,
-                            // isAuthenticated: user.isAuthenticated,
-                            // token: user.token,
-                            user: user,
+                            email: user.email,
+                            password: user.password,
+                            isAuthenticated: user.isAuthenticated,
+                            token: user.token,
+                            isAdmin: user.isAdmin,
                         }
                         )
                     })
