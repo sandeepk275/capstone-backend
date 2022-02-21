@@ -35,6 +35,7 @@ app.get('/', (req, res) => {
 require('./routes/user.routes')(express, app);
 require('./routes/Address.routes')(express, app);
 require('./routes/product.routes')(express, app);
+require('./routes/Order.routes')(express, app);
 
 
 app.listen(PORT, () => {
